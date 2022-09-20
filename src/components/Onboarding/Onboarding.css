@@ -1,0 +1,23 @@
+.Onboarding-name {
+  width: 100%;
+}
+
+.Onboarding-icon {
+  font-size: 24px;
+  margin-left: 4px;
+}
+
+.Button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

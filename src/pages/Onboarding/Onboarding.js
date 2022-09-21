@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BiRun } from 'react-icons/bi';
 
-import { useAppContext, ACTIONS } from '../AppContext/AppContext';
+import { useAppContext, ACTIONS } from '../../components/AppContext/AppContext';
+import Button from "../../components/Button/Button"
 
 import "./Onboarding.css";
 
@@ -13,9 +14,9 @@ export default function Onboarding() {
     setName(target.value)
   }
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     dispatch({ type: ACTIONS.ONBOARD, payload: name })
-  }
+  }, [dispatch, name])
 
   return (
     <>
@@ -24,7 +25,9 @@ export default function Onboarding() {
       <p>No sign up, No Ads, No fuss, just install and enter your runs!</p>
       <p>Let's start with your name.</p>
       <input value={name} onChange={handleChange} className="Onboarding-name" type="text" placeholder="enter your name" />
-      <button onClick={handleClick} className="Button">Start running <BiRun className="Onboarding-icon" /> </button>
+      <Button handleClick={handleClick}>
+        Start running <BiRun className="Onboarding-icon" />
+      </Button>
     </>
   )
 }

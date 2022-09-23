@@ -9,12 +9,13 @@ import padNum from './padNum';
 
 import "./Runs.css";
 
-function AddNewRun({ returnToRuns }) {
+function AddNewRun({ returnToRuns, editRun }) {
   const { dispatch } = useAppContext()
-  const [speed, setSpeed] = useState("")
-  const [timeHH, setTimeHH] = useState("")
-  const [timeMM, setTimeMM] = useState("")
-  const [timeSS, setTimeSS] = useState("")
+  const editing = !!editRun
+  const [speed, setSpeed] = useState(editRun?.speed || "")
+  const [timeHH, setTimeHH] = useState(editRun?.timeHH || "")
+  const [timeMM, setTimeMM] = useState(editRun?.timeMM || "")
+  const [timeSS, setTimeSS] = useState(editRun?.timeSS || "")
   const [error, setError] = useState()
 
   function handleAddNewRun() {
@@ -23,22 +24,25 @@ function AddNewRun({ returnToRuns }) {
     if (speed <= 0) return setError("Enter a speed greater than 0")
     if (timeHH <= 0 && timeMM <= 0 && timeSS <= 0) return setError("Enter at least 1 valid time")
     
-    const payload = { speed }
-    if (timeHH && !isNaN(timeHH)) payload.timeHH = timeHH
-    if (timeMM && !isNaN(timeMM)) payload.timeMM = timeMM
-    if (timeSS && !isNaN(timeSS)) payload.timeSS = timeSS
+    const payload = editing ? {...editRun} : { speed }
+    const type = editing ? ACTIONS.EDIT_RUN : ACTIONS.ADD_NEW_RUN
 
-    dispatch({ type: ACTIONS.ADD_NEW_RUN, payload: buildRunPayload(payload) })
+    if (timeHH !== "" && !isNaN(timeHH)) payload.timeHH = timeHH
+    if (timeMM !== "" && !isNaN(timeMM)) payload.timeMM = timeMM
+    if (timeSS !== "" && !isNaN(timeSS)) payload.timeSS = timeSS
+
+    dispatch({ type, payload: buildRunPayload(payload) })
     returnToRuns()
   }
 
   function setParsedInt(fn, value) {
-    fn((value === "" || isNaN(value)) ? "" : parseInt(value, 10))
+    const fallback = editing ? 0 : ""
+    fn((value === "" || isNaN(value)) ? fallback : parseInt(value, 10))
   }
 
   return (
     <>
-      <h1 className="AddNewRun-title">Add new run</h1>
+      <h1 className="AddNewRun-title">{editing ? "Edit run" : "Add new run"}</h1>
       {error && <p>{error}</p>}
       <div className="AddNewRun-input-container">
         <label htmlFor="speed" className="AddNewRun-label">
@@ -61,7 +65,7 @@ function AddNewRun({ returnToRuns }) {
       </div>
 
       <Button handleClick={handleAddNewRun}>
-        <AiOutlinePlus className="AddNewRun-icon" /> Add new run
+        {editing ? "Save change" : <><AiOutlinePlus className="AddNewRun-icon" />Add new run</>}
       </Button>
 
       <Button handleClick={returnToRuns} type="danger">
@@ -74,6 +78,7 @@ function AddNewRun({ returnToRuns }) {
 export default function Runs() {
   const { state: { user, runs } } = useAppContext()
   const [showAddRunScreen, setShowAddRunScreen] = useState(false)
+  const [editRun, setEditRun] = useState()
 
   const handleClick = useCallback(() => {
     setShowAddRunScreen(true)
@@ -81,13 +86,15 @@ export default function Runs() {
 
   const returnToRuns = useCallback(() => {
     setShowAddRunScreen(false)
+    setEditRun(null)
   }, [setShowAddRunScreen])
 
-  function handleRunClick() {
-    
+  function handleRunClick(run) {
+    setEditRun(run)
+    setShowAddRunScreen(true)
   }
 
-  if (showAddRunScreen) return <AddNewRun returnToRuns={returnToRuns} />
+  if (showAddRunScreen) return <AddNewRun returnToRuns={returnToRuns} editRun={editRun} />
 
   return (
     <>
@@ -113,7 +120,7 @@ export default function Runs() {
 
           <tbody>
             {runs.map((run, i) => (
-              <tr className="Runs-run" key={run.createdAt} onClick={handleRunClick}>
+              <tr className="Runs-run" key={run.createdAt} onClick={() => handleRunClick(run)}>
                 <td>{runs.length - i}</td>
                 <td>{new Date(run.createdAt).toLocaleDateString()}</td>
                 <td>{run.speed}</td>

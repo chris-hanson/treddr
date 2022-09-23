@@ -2,9 +2,9 @@ import React from "react";
 
 import "./Button.css"
 
-export default function Button({ handleClick, children}) {
+export default function Button({ handleClick, children, type="primary" }) {
   return (
-    <button onClick={handleClick} className="Button">
+    <button onClick={handleClick} className={`Button-${type}`}>
       { children }
     </button>
   )

@@ -1,3 +1,11 @@
+/* Runs */
+
+.Runs-icon {
+  margin-left: 6px;
+}
+
+
+/* AddNewRun */
 .AddNewRun-title {
   margin-bottom: 30px;
 }
@@ -17,6 +25,10 @@
 
 .AddNewRun-input {
   width: 100%;
+}
+
+.AddNewRun-icon {
+  margin-right: 4px;
 }
 
 .AddNewRun-time-container {

@@ -6,18 +6,27 @@ const DEFAULT_STATE = {
 }
 
 const ACTIONS = {
-  ONBOARD: 'ONBOARD'
+  ONBOARD: 'ONBOARD',
+  ADD_NEW_RUN: 'ADD_NEW_RUN'
 }
 
-function appReducer(state, action) {
-  if (action.type === ACTIONS.ONBOARD) {
+function appReducer(state, { type, payload }) {
+  if (type === ACTIONS.ONBOARD) {
     return {
       ...state,
       user: {
         ...state.user,
-        name: action.payload,
+        name: payload,
         onboard: true
       }
+    }
+  }
+
+  if (type === ACTIONS.ADD_NEW_RUN) {
+    const runs = [...state.runs, payload]
+    return {
+      ...state,
+      runs
     }
   }
 

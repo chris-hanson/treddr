@@ -4,6 +4,7 @@
   --secondary: #16DB65;
   --tertiary: #EEBA0B;
   --highlight: #C36F09;
+  --danger: rgb(231, 27, 27);
 }
 
 * {

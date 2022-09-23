@@ -33,15 +33,17 @@ export default function Runs() {
 
   return (
     <>
-      <h1>Hi {user.name},</h1>
+      <div className="container">
+        <h1>Hi {user.name},</h1>
 
-      {!runs.length && (
-        <p>You haven&apos;t logged any runs yet. Add a one now, it&apos;s really easy.</p>
-      )}
+        {!runs.length && (
+          <p>You haven&apos;t logged any runs yet. Add a one now, it&apos;s really easy.</p>
+        )}
 
-      <Button handleClick={handleClick}>
-        Add a run <BiRun className="Runs-icon" />
-      </Button>
+        <Button handleClick={handleClick}>
+          Add a run <BiRun className="Runs-icon" />
+        </Button>
+      </div>
 
       {!!runs.length && (
         <div className="Runs-list-container">

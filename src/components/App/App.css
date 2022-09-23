@@ -22,10 +22,12 @@
 
 .App-buttons {
   display: flex;
+  align-items: center;
 }
 
 .App-menu {
   margin-left: 15px;
+  margin-top: 4px;
 }
 
 .App-ios-message {
@@ -46,7 +48,6 @@
 }
 
 .App-container {
-  padding: 30px 30px 0;
   overflow-y: auto;
   background: var(--background);
   display: flex;

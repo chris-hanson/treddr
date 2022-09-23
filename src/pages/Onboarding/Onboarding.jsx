@@ -20,7 +20,7 @@ export default function Onboarding() {
   }, [dispatch, name])
 
   return (
-    <>
+    <div className="container">
       <h1>Welcome to Treddr</h1>
       <h2>Dead simple treadmill logger</h2>
       <p>No sign up, No Ads, No fuss, just install and enter your runs!</p>
@@ -35,6 +35,6 @@ export default function Onboarding() {
       <Button handleClick={handleClick}>
         Start running <BiRun className="Onboarding-icon" />
       </Button>
-    </>
+    </div>
   )
 }

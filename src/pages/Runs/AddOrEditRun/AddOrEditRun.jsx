@@ -55,7 +55,7 @@ export default function AddOrEditRun({ returnToRuns, editRun }) {
   }, [dispatch, editRun, returnToRuns])
 
   return (
-    <>
+    <div className="container">
       <h1 className="AddOrEditRun-title">{editing ? "Edit run" : "Add new run"}</h1>
       {error && <p>{error}</p>}
 
@@ -144,6 +144,6 @@ export default function AddOrEditRun({ returnToRuns, editRun }) {
       <Button handleClick={returnToRuns} type="danger">
         Cancel
       </Button>
-    </>
+    </div>
   )
 }

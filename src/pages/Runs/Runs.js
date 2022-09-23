@@ -16,7 +16,8 @@ function AddNewRun({ returnToRuns, editRun }) {
   const [timeHH, setTimeHH] = useState(editRun?.timeHH || "")
   const [timeMM, setTimeMM] = useState(editRun?.timeMM || "")
   const [timeSS, setTimeSS] = useState(editRun?.timeSS || "")
-  const [error, setError] = useState()
+  const [error, setError] = useState("")
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   function handleAddNewRun() {
     setError("")
@@ -39,6 +40,15 @@ function AddNewRun({ returnToRuns, editRun }) {
     const fallback = editing ? 0 : ""
     fn((value === "" || isNaN(value)) ? fallback : parseInt(value, 10))
   }
+
+  const handleDelete = useCallback(() => {
+    setShowDeleteConfirm(true)
+  }, [setShowDeleteConfirm])
+
+  const handleConfirmedDelete = useCallback(() => {
+    dispatch({ type: ACTIONS.DELETE_RUN, payload: editRun.createdAt })
+    returnToRuns()
+  }, [dispatch, editRun, returnToRuns])
 
   return (
     <>
@@ -67,6 +77,14 @@ function AddNewRun({ returnToRuns, editRun }) {
       <Button handleClick={handleAddNewRun}>
         {editing ? "Save change" : <><AiOutlinePlus className="AddNewRun-icon" />Add new run</>}
       </Button>
+
+      {(editing && !showDeleteConfirm) && <Button handleClick={handleDelete} type="danger">
+        Delete run
+      </Button>}
+
+      {showDeleteConfirm && <Button handleClick={handleConfirmedDelete} type="danger">
+        Are you sure?
+      </Button>}
 
       <Button handleClick={returnToRuns} type="danger">
         Cancel
@@ -106,7 +124,7 @@ export default function Runs() {
         Add a run <BiRun className="Runs-icon" />
       </Button>
 
-      <div className="Runs-list-container">
+      {!!runs.length && <div className="Runs-list-container">
         <table className="Runs-list-table">
           <thead>
             <tr className="Runs-th">
@@ -130,7 +148,7 @@ export default function Runs() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div>}
     </>
   )
 }

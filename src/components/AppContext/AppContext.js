@@ -8,7 +8,8 @@ const DEFAULT_STATE = {
 const ACTIONS = {
   ONBOARD: 'ONBOARD',
   ADD_NEW_RUN: 'ADD_NEW_RUN',
-  EDIT_RUN: 'EDIT_RUN'
+  EDIT_RUN: 'EDIT_RUN',
+  DELETE_RUN: 'DELETE_RUN'
 }
 
 function appReducer(state, { type, payload }) {
@@ -35,6 +36,15 @@ function appReducer(state, { type, payload }) {
     const runs = state.runs.map(run => {
       return run.createdAt === payload.createdAt ? payload : { ...run }
     })
+
+    return {
+      ...state,
+      runs
+    }
+  }
+
+  if (type === ACTIONS.DELETE_RUN) {
+    const runs = state.runs.filter(run => run.createdAt !== payload)
 
     return {
       ...state,

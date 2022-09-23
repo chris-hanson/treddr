@@ -23,7 +23,7 @@ function appReducer(state, { type, payload }) {
   }
 
   if (type === ACTIONS.ADD_NEW_RUN) {
-    const runs = [...state.runs, payload]
+    const runs = [payload, ...state.runs]
     return {
       ...state,
       runs

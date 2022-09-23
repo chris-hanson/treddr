@@ -1,5 +1,6 @@
 :root {
   --background: #282C34;
+  --header-bg: #1D1F22;
   --primary: #058C42;
   --secondary: #16DB65;
   --tertiary: #464133;
@@ -18,10 +19,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
   color: white;
-  background-color: var(--background);
+  background: var(--header-bg);
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  position: fixed;
 }
 
 code {
@@ -29,10 +34,15 @@ code {
     monospace;
 }
 
+#root {
+  height: 100%;
+}
+
 /* Headings */
 
 h1 {
   margin: 0;
+  font-size: 38px;
 }
 
 h2 {

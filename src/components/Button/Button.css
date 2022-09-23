@@ -17,3 +17,10 @@
 .Button-danger {
   background: var(--danger);
 }
+
+.Button-inline {
+  margin-top: 0;
+  width: auto;
+  padding: 4px 12px;
+  font-weight: normal;
+}

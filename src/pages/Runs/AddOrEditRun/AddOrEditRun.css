@@ -1,0 +1,39 @@
+.AddOrEditRun-title {
+  margin-bottom: 30px;
+}
+
+.AddOrEditRun-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 15px 0;
+  gap: 15px;
+}
+
+.AddOrEditRun-label {
+  min-width: 60px;
+  text-align: right;
+}
+
+.AddOrEditRun-input {
+  width: 100%;
+}
+
+.AddOrEditRun-icon {
+  margin-right: 4px;
+}
+
+.AddOrEditRun-time-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.AddOrEditRun-colon {
+  margin: 0 5px;
+}
+
+.AddOrEditRun-time {
+  text-align: center;
+  width: 33%;
+}

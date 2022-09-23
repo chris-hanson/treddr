@@ -1,5 +1,3 @@
-/* Runs */
-
 .Runs-icon {
   margin-left: 6px;
 }
@@ -38,46 +36,4 @@
   padding: 0;
   padding-top:20px;
   padding-bottom:20px;    
-}
-
-
-/* AddNewRun */
-.AddNewRun-title {
-  margin-bottom: 30px;
-}
-
-.AddNewRun-input-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 15px 0;
-  gap: 15px;
-}
-
-.AddNewRun-label {
-  min-width: 60px;
-  text-align: right;
-}
-
-.AddNewRun-input {
-  width: 100%;
-}
-
-.AddNewRun-icon {
-  margin-right: 4px;
-}
-
-.AddNewRun-time-container {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.AddNewRun-colon {
-  margin: 0 5px;
-}
-
-.AddNewRun-time {
-  text-align: center;
-  width: 33%;
 }

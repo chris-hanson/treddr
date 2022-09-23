@@ -1,108 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { BiRun } from 'react-icons/bi';
-import { AiOutlinePlus } from 'react-icons/ai'
 
-import { useAppContext, ACTIONS } from '../../components/AppContext/AppContext';
+import { useAppContext } from '../../components/AppContext/AppContext';
 import Button from "../../components/Button/Button"
-import buildRunPayload from "./buildRunPayload"
+import AddOrEditRun from "./AddOrEditRun/AddOrEditRun"
 import padNum from './padNum';
 
 import "./Runs.css";
-
-function AddNewRun({ returnToRuns, editRun }) {
-  const { dispatch } = useAppContext()
-  const editing = !!editRun
-  const [logDate, setLogDate] = useState((editing ? new Date(editRun.loggedAt) : new Date()).toISOString().split('T')[0])
-  const [speed, setSpeed] = useState(editRun?.speed || "")
-  const [timeHH, setTimeHH] = useState(editRun?.timeHH || "")
-  const [timeMM, setTimeMM] = useState(editRun?.timeMM || "")
-  const [timeSS, setTimeSS] = useState(editRun?.timeSS || "")
-  const [error, setError] = useState("")
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
-
-  function handleAddNewRun() {
-    setError("")
-
-    if (speed <= 0) return setError("Enter a speed greater than 0")
-    if (timeHH <= 0 && timeMM <= 0 && timeSS <= 0) return setError("Enter at least 1 valid time")
-    
-    const payload = editing ? {...editRun} : {}
-    const type = editing ? ACTIONS.EDIT_RUN : ACTIONS.ADD_NEW_RUN
-    
-    if (speed !== "" && !isNaN(speed)) payload.speed = speed
-    if (timeHH !== "" && !isNaN(timeHH)) payload.timeHH = timeHH
-    if (timeMM !== "" && !isNaN(timeMM)) payload.timeMM = timeMM
-    if (timeSS !== "" && !isNaN(timeSS)) payload.timeSS = timeSS
-    payload.logDate = logDate
-
-    dispatch({ type, payload: buildRunPayload(payload) })
-    returnToRuns()
-  }
-
-  function setParsedInt(fn, value) {
-    const fallback = editing ? 0 : ""
-    fn((value === "" || isNaN(value)) ? fallback : parseInt(value, 10))
-  }
-
-  const handleDelete = useCallback(() => {
-    setShowDeleteConfirm(true)
-  }, [setShowDeleteConfirm])
-
-  const handleConfirmedDelete = useCallback(() => {
-    dispatch({ type: ACTIONS.DELETE_RUN, payload: editRun.createdAt })
-    returnToRuns()
-  }, [dispatch, editRun, returnToRuns])
-
-  return (
-    <>
-      <h1 className="AddNewRun-title">{editing ? "Edit run" : "Add new run"}</h1>
-      {error && <p>{error}</p>}
-
-      <div className="AddNewRun-input-container">
-        <label htmlFor="logDate" className="AddNewRun-label">
-          Date:
-        </label>
-        <input value={logDate} onChange={({target: {value}}) => setLogDate(value)} type="date" className="AddNewRun-input" id="logDate" />
-      </div>
-
-      <div className="AddNewRun-input-container">
-        <label htmlFor="speed" className="AddNewRun-label">
-          KM:
-        </label>
-        <input value={speed} onChange={({target: {value}}) => setParsedInt(setSpeed, value)} type="number" className="AddNewRun-input" id="speed" placeholder="enter treadmill speed" />
-      </div>
-
-      <div className="AddNewRun-input-container">
-        <label htmlFor="time" className="AddNewRun-label">
-          Time:
-        </label>
-        <div className="AddNewRun-time-container">
-          <input value={timeHH} onChange={({target: {value}}) => setParsedInt(setTimeHH, value)} className="AddNewRun-time" id="time" type="number" placeholder="HH" />
-          <span className="AddNewRun-colon">:</span>
-          <input value={timeMM} onChange={({target: {value}}) => setParsedInt(setTimeMM, value)} className="AddNewRun-time" type="number" placeholder="MM" />
-          <span className="AddNewRun-colon">:</span>
-          <input value={timeSS} onChange={({target: {value}}) => setParsedInt(setTimeSS, value)} className="AddNewRun-time" type="number" placeholder="SS" />
-        </div>
-      </div>
-
-      <Button handleClick={handleAddNewRun}>
-        {editing ? "Save change" : <><AiOutlinePlus className="AddNewRun-icon" />Add new run</>}
-      </Button>
-
-      {(editing && !showDeleteConfirm) && <Button handleClick={handleDelete} type="danger">
-        Delete run
-      </Button>}
-
-      {showDeleteConfirm && <Button handleClick={handleConfirmedDelete} type="danger">
-        Are you sure?
-      </Button>}
-
-      <Button handleClick={returnToRuns} type="danger">
-        Cancel
-      </Button>
-    </>
-  )
-}
 
 export default function Runs() {
   const { state: { user, runs } } = useAppContext()
@@ -123,7 +27,7 @@ export default function Runs() {
     setShowAddRunScreen(true)
   }
 
-  if (showAddRunScreen) return <AddNewRun returnToRuns={returnToRuns} editRun={editRun} />
+  if (showAddRunScreen) return <AddOrEditRun returnToRuns={returnToRuns} editRun={editRun} />
 
   return (
     <>
@@ -139,7 +43,6 @@ export default function Runs() {
         <table className="Runs-list-table">
           <thead>
             <tr className="Runs-th">
-              <th>#</th>
               <th>Date</th>
               <th>KM</th>
               <th>H:M:S</th>
@@ -148,9 +51,8 @@ export default function Runs() {
           </thead>
 
           <tbody>
-            {runs.map((run, i) => (
+            {runs.map(run => (
               <tr className="Runs-run" key={run.createdAt} onClick={() => handleRunClick(run)}>
-                <td>{runs.length - i}</td>
                 <td>{new Date(run.loggedAt).toLocaleDateString()}</td>
                 <td>{run.speed}</td>
                 <td>{padNum(run.timeHH)}:{padNum(run.timeMM)}:{padNum(run.timeSS)}</td>

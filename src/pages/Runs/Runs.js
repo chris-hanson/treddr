@@ -25,9 +25,10 @@ function AddNewRun({ returnToRuns, editRun }) {
     if (speed <= 0) return setError("Enter a speed greater than 0")
     if (timeHH <= 0 && timeMM <= 0 && timeSS <= 0) return setError("Enter at least 1 valid time")
     
-    const payload = editing ? {...editRun} : { speed }
+    const payload = editing ? {...editRun} : {}
     const type = editing ? ACTIONS.EDIT_RUN : ACTIONS.ADD_NEW_RUN
 
+    if (speed !== "" && !isNaN(speed)) payload.speed = speed
     if (timeHH !== "" && !isNaN(timeHH)) payload.timeHH = timeHH
     if (timeMM !== "" && !isNaN(timeMM)) payload.timeMM = timeMM
     if (timeSS !== "" && !isNaN(timeSS)) payload.timeSS = timeSS

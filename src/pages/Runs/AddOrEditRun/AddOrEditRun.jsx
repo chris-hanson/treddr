@@ -30,6 +30,7 @@ export default function AddOrEditRun({ returnToRuns, editRun }) {
 
     if (speed <= 0) return setError("Enter a speed greater than 0")
     if (timeHH <= 0 && timeMM <= 0 && timeSS <= 0) return setError("Enter at least 1 valid time")
+    if (timeMM >= 60 || timeSS >= 60) return setError("Minutes and seconds should be less than 60")
 
     const payload = editing ? { ...editRun } : {}
     const type = editing ? ACTIONS.EDIT_RUN : ACTIONS.ADD_NEW_RUN

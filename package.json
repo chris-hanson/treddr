@@ -30,6 +30,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "ignorePatterns": [
+      "src/index.js",
+      "src/serviceWorkerRegistration.js"
+    ],
     "extends": [
       "react-app",
       "react-app/jest",

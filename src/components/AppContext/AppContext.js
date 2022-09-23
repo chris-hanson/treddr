@@ -25,7 +25,9 @@ function appReducer(state, { type, payload }) {
   }
 
   if (type === ACTIONS.ADD_NEW_RUN) {
-    const runs = [payload, ...state.runs]
+    const runs = [payload, ...state.runs].sort((a, b) => {
+      return b.loggedAt - a.loggedAt || b.createdAt - a.createdAt
+    })
     return {
       ...state,
       runs
@@ -35,6 +37,8 @@ function appReducer(state, { type, payload }) {
   if (type === ACTIONS.EDIT_RUN) {
     const runs = state.runs.map(run => {
       return run.createdAt === payload.createdAt ? payload : { ...run }
+    }).sort((a, b) => {
+      return b.loggedAt - a.loggedAt || b.createdAt - a.createdAt
     })
 
     return {

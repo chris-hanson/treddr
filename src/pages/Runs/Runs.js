@@ -12,6 +12,7 @@ import "./Runs.css";
 function AddNewRun({ returnToRuns, editRun }) {
   const { dispatch } = useAppContext()
   const editing = !!editRun
+  const [logDate, setLogDate] = useState((editing ? new Date(editRun.loggedAt) : new Date()).toISOString().split('T')[0])
   const [speed, setSpeed] = useState(editRun?.speed || "")
   const [timeHH, setTimeHH] = useState(editRun?.timeHH || "")
   const [timeMM, setTimeMM] = useState(editRun?.timeMM || "")
@@ -27,11 +28,12 @@ function AddNewRun({ returnToRuns, editRun }) {
     
     const payload = editing ? {...editRun} : {}
     const type = editing ? ACTIONS.EDIT_RUN : ACTIONS.ADD_NEW_RUN
-
+    
     if (speed !== "" && !isNaN(speed)) payload.speed = speed
     if (timeHH !== "" && !isNaN(timeHH)) payload.timeHH = timeHH
     if (timeMM !== "" && !isNaN(timeMM)) payload.timeMM = timeMM
     if (timeSS !== "" && !isNaN(timeSS)) payload.timeSS = timeSS
+    payload.logDate = logDate
 
     dispatch({ type, payload: buildRunPayload(payload) })
     returnToRuns()
@@ -55,6 +57,14 @@ function AddNewRun({ returnToRuns, editRun }) {
     <>
       <h1 className="AddNewRun-title">{editing ? "Edit run" : "Add new run"}</h1>
       {error && <p>{error}</p>}
+
+      <div className="AddNewRun-input-container">
+        <label htmlFor="logDate" className="AddNewRun-label">
+          Date:
+        </label>
+        <input value={logDate} onChange={({target: {value}}) => setLogDate(value)} type="date" className="AddNewRun-input" id="logDate" />
+      </div>
+
       <div className="AddNewRun-input-container">
         <label htmlFor="speed" className="AddNewRun-label">
           KM:
@@ -141,7 +151,7 @@ export default function Runs() {
             {runs.map((run, i) => (
               <tr className="Runs-run" key={run.createdAt} onClick={() => handleRunClick(run)}>
                 <td>{runs.length - i}</td>
-                <td>{new Date(run.createdAt).toLocaleDateString()}</td>
+                <td>{new Date(run.loggedAt).toLocaleDateString()}</td>
                 <td>{run.speed}</td>
                 <td>{padNum(run.timeHH)}:{padNum(run.timeMM)}:{padNum(run.timeSS)}</td>
                 <td>{run.distance}</td>

@@ -15,6 +15,7 @@ export default function Onboarding() {
   }
 
   const handleClick = useCallback(() => {
+    if (!name) return
     dispatch({ type: ACTIONS.ONBOARD, payload: name })
   }, [dispatch, name])
 

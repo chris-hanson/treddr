@@ -4,9 +4,9 @@ export default function buildRunPayload({
   timeSS = 0,
   timeMM = 0,
   createdAt = Date.now(),
-  logDate
+  logDate,
 }) {
-  const timeTotalS = (timeHH * 60 * 60) + (timeMM * 60) + timeSS
+  const timeTotalS = timeHH * 60 * 60 + timeMM * 60 + timeSS
   const kps = (speed / 60 / 60).toFixed(10)
   const distance = (kps * timeTotalS).toFixed(2)
   const loggedAt = +new Date(logDate)
@@ -19,6 +19,6 @@ export default function buildRunPayload({
     timeTotalS,
     distance,
     createdAt,
-    loggedAt
+    loggedAt,
   }
 }

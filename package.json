@@ -32,8 +32,35 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "eslint-config-airbnb",
+      "prettier"
+    ],
+    "rules": {
+      "react/prop-types": 0,
+      "jsx-a11y/label-has-associated-control": [
+        "error",
+        {
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          }
+        }
+      ],
+      "jsx-a11y/label-has-for": [
+        "error",
+        {
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          }
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -46,5 +73,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1"
   }
 }

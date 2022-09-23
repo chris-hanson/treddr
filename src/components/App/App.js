@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrInstall } from 'react-icons/gr'
 

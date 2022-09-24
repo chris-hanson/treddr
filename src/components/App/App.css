@@ -11,13 +11,16 @@
   display: flex;
   justify-content: space-between;
   background: var(--header-bg);
-  padding: 15px;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 1;
 }
 
 .App-logo {
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
+  margin-left: 10px;
 }
 
 .App-buttons {
@@ -26,7 +29,8 @@
 }
 
 .App-menu-btn {
-  margin-left: 15px;
+  padding: 14px;
+  margin-left: 8px;
   margin-top: 4px;
   font-size: 18px;
 }
@@ -73,12 +77,12 @@
 
 .App-menu {
   position: fixed;
-  top: 60px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: #282c34f5;
-  padding: 15px 30px 30px;
+  padding: 60px 30px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

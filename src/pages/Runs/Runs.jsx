@@ -53,7 +53,7 @@ export default function Runs() {
           <table className="Runs-list-table">
             <thead>
               <tr className="Runs-th">
-                <th>Date</th>
+                <th width="130">Date</th>
                 <th>KM</th>
                 <th>H:M:S</th>
                 <th>Ks</th>

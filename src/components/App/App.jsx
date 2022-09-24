@@ -125,7 +125,11 @@ function App() {
                 so be careful not to clear your cache :)
               </p>
               <p>
-                Made by <a href="http://www.chrishanson.info/">Chris Hanson</a> for personal use.
+                Made by{" "}
+                <a target="_blank" rel="noreferrer" href="http://www.chrishanson.info/">
+                  Chris Hanson
+                </a>{" "}
+                for personal use.
               </p>
               <small>{VERSION}</small>
             </div>

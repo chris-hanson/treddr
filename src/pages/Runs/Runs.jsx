@@ -4,7 +4,7 @@ import { BiRun } from "react-icons/bi"
 import { useAppContext } from "../../components/AppContext/AppContext"
 import Button from "../../components/Button/Button"
 import AddOrEditRun from "./AddOrEditRun/AddOrEditRun"
-import WeeklySummary from "./WeeklySummary/WeeklySummary"
+import PeriodSummary from "./PeriodSummary/PeriodSummary"
 import padNum from "./padNum"
 
 import "./Runs.css"
@@ -46,7 +46,7 @@ export default function Runs() {
         </Button>
       </div>
 
-      {!!runs.length && <WeeklySummary runs={runs} />}
+      {!!runs.length && <PeriodSummary runs={runs} />}
 
       {!!runs.length && (
         <div className="Runs-list-container">

@@ -1,0 +1,42 @@
+.WeeklySummary-container {
+  display: flex;
+  margin-top: 30px;
+}
+
+.WeeklySummary-week-stats {
+  flex-grow: 1;
+}
+
+.WeeklySummary-week-labels .WeeklySummary-stat-label,
+.WeeklySummary-week-stats .WeeklySummary-stat {
+  background: var(--highlight);
+}
+
+.WeeklySummary-week-labels .WeeklySummary-stat-label:nth-child(even),
+.WeeklySummary-week-stats .WeeklySummary-stat:nth-child(even) {
+  background: var(--tertiary);
+}
+
+.WeeklySummary-stats-header {
+  background: var(--highlight);
+  display: block;
+  padding: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.WeeklySummary-stat {
+  display: block;
+}
+
+.WeeklySummary-stat-label {
+  text-align: right;
+  display: block;
+  padding: 8px 0 8px 24px;
+}
+
+.WeeklySummary-stat-info {
+  display: block;
+  padding: 8px;
+  text-align: center;
+}

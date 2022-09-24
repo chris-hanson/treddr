@@ -48,17 +48,22 @@
 }
 
 .PeriodSummary-selector-container {
-  border: 1px solid var(--tertiary);
-  border-bottom: none;
+  border: 1px solid var(--highlight);
   margin-top: 30px;
 }
 
 .PeriodSummary-selector {
   width: 100%;
-  background: none;
+  background-color: var(--background);
+  display: block;
   padding: 12px 10px;
+  height: 45px;
+  border-radius: 0;
   color: white;
   border: none;
   border-right: 16px solid var(--background);
+  border-left: 16px solid var(--background);
   text-align: center;
+  text-align-last: center;
+  font-weight: bold;
 }

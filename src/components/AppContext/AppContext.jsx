@@ -24,6 +24,16 @@ function appReducer(state, { type, payload }) {
     }
   }
 
+  if (type === ACTIONS.UPDATE_USER) {
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        ...payload,
+      },
+    }
+  }
+
   if (type === ACTIONS.ADD_NEW_RUN) {
     const runs = [payload, ...state.runs].sort(
       (a, b) => b.loggedAt - a.loggedAt || b.createdAt - a.createdAt

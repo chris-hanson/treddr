@@ -32,6 +32,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+a {
+  color: rgb(156, 156, 156);
+}
+
 #root {
   height: 100%;
 }
@@ -43,7 +47,7 @@ code {
 /* Headings */
 
 h1 {
-  margin: 0;
+  margin-top: 30px;
   font-size: 38px;
 }
 
@@ -60,4 +64,13 @@ input {
   background: none;
   border-radius: 4px;
   padding: 14px 12px;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
 }

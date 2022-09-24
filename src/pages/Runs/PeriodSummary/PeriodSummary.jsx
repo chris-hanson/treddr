@@ -88,8 +88,8 @@ export default function PeriodSummary({ runs }) {
           <div className="PeriodSummary-stats-header">&nbsp;</div>
           <div className="PeriodSummary-stat-label">Runs:</div>
           <div className="PeriodSummary-stat-label">Time:</div>
-          <div className="PeriodSummary-stat-label">Ks:</div>
-          <div className="PeriodSummary-stat-label">MpK:</div>
+          <div className="PeriodSummary-stat-label">km:</div>
+          <div className="PeriodSummary-stat-label">min/km:</div>
         </div>
 
         <div className="PeriodSummary-week-stats">

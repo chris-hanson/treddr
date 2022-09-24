@@ -74,7 +74,7 @@ export default function AddOrEditRun({ returnToRuns, editRun }) {
 
       <div className="AddOrEditRun-input-container">
         <label htmlFor="speed" className="AddOrEditRun-label">
-          KM:
+          KPH:
         </label>
         <input
           value={speed}

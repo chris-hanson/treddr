@@ -54,9 +54,9 @@ export default function Runs() {
             <thead>
               <tr className="Runs-th">
                 <th width="130">Date</th>
-                <th>KM</th>
+                <th>KPH</th>
                 <th>H:M:S</th>
-                <th>Ks</th>
+                <th>km</th>
               </tr>
             </thead>
 

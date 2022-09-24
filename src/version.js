@@ -1,1 +1,3 @@
-export default "v1.1.4"
+const VERSION = "v1.1.4"
+
+export default VERSION

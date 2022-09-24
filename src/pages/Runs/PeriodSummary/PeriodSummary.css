@@ -1,6 +1,5 @@
 .PeriodSummary-container {
   display: flex;
-  margin-top: 30px;
 }
 
 .PeriodSummary-week-labels {
@@ -45,5 +44,21 @@
 .PeriodSummary-stat-info {
   display: block;
   padding: 10px;
+  text-align: center;
+}
+
+.PeriodSummary-selector-container {
+  border: 1px solid var(--tertiary);
+  border-bottom: none;
+  margin-top: 30px;
+}
+
+.PeriodSummary-selector {
+  width: 100%;
+  background: none;
+  padding: 12px 10px;
+  color: white;
+  border: none;
+  border-right: 16px solid var(--background);
   text-align: center;
 }

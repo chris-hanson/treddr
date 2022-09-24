@@ -1,12 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 
 import "./PeriodSummary.css"
 
 function getStartOfPeriod(period, from = Date.now()) {
   const date = new Date(from)
-  const day = date.getDay()
-  const diff = date.getDate() - day + (day === 0 ? -7 : 0)
-  return new Date(date.setDate(diff)).setHours(0, 0, 0, 0)
+
+  if (period === "week") {
+    const day = date.getDay()
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1)
+    return new Date(date.setDate(diff)).setHours(0, 0, 0, 0)
+  }
+
+  if (["month", "year"].includes(period)) date.setDate(1)
+  if (period === "year") date.setMonth(0)
+
+  return date.setHours(0, 0, 0, 0)
 }
 
 function collectRunsByPeriod(period, runs) {
@@ -56,12 +64,25 @@ function totalRunStats(runs) {
 }
 
 export default function PeriodSummary({ runs }) {
-  const { thisPeriod, lastPeriod } = collectRunsByPeriod("week", runs)
+  const [period, setPeriod] = useState("week")
+  const { thisPeriod, lastPeriod } = collectRunsByPeriod(period, runs)
   const thisPeriodStats = totalRunStats(thisPeriod)
   const lastPeriodStats = totalRunStats(lastPeriod)
 
   return (
     <div className="container">
+      <div className="PeriodSummary-selector-container">
+        <select
+          className="PeriodSummary-selector"
+          value={period}
+          onChange={({ target: { value } }) => setPeriod(value)}
+        >
+          <option value="week">Weekly summary</option>
+          <option value="month">Monthly summary</option>
+          <option value="year">Yearly summary</option>
+        </select>
+      </div>
+
       <div className="PeriodSummary-container">
         <div className="PeriodSummary-week-labels">
           <div className="PeriodSummary-stats-header">&nbsp;</div>
@@ -72,7 +93,7 @@ export default function PeriodSummary({ runs }) {
         </div>
 
         <div className="PeriodSummary-week-stats">
-          <span className="PeriodSummary-stats-header">This week</span>
+          <span className="PeriodSummary-stats-header">This {period}</span>
           <div className="PeriodSummary-stat">
             <span className="PeriodSummary-stat-info">{thisPeriod.length}</span>
           </div>
@@ -88,7 +109,7 @@ export default function PeriodSummary({ runs }) {
         </div>
 
         <div className="PeriodSummary-week-stats">
-          <span className="PeriodSummary-stats-header">Last week</span>
+          <span className="PeriodSummary-stats-header">Last {period}</span>
           <div className="PeriodSummary-stat">
             <span className="PeriodSummary-stat-info">{lastPeriod.length}</span>
           </div>

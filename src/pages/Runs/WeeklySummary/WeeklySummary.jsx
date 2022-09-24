@@ -26,6 +26,7 @@ function collectWeeklyRuns(runs) {
 }
 
 function calcAvgMinsPerK(time, distance) {
+  if (time <= 0) return 0
   const timePerK = time / distance
   const date = new Date(0, 0)
   date.setSeconds(+timePerK)
@@ -56,7 +57,6 @@ function totalRunStats(runs) {
 
 export default function WeeklySummary({ runs }) {
   const { thisWeek, lastWeek } = collectWeeklyRuns(runs)
-
   const thisWeekStats = totalRunStats(thisWeek)
   const lastWeekStats = totalRunStats(lastWeek)
 

@@ -28,6 +28,7 @@
 .App-menu-btn {
   margin-left: 15px;
   margin-top: 4px;
+  font-size: 18px;
 }
 
 .App-ios-message {
@@ -72,7 +73,7 @@
 
 .App-menu {
   position: fixed;
-  top: 55px;
+  top: 60px;
   left: 0;
   right: 0;
   bottom: 0;

@@ -5,11 +5,6 @@ import App from "./components/App/App"
 import AppContext from "./components/AppContext/AppContext"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 
-window.addEventListener("scroll", e => {
-  e.preventDefault()
-  window.scrollTo(0, 0)
-})
-
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>

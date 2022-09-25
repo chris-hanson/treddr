@@ -2,14 +2,9 @@
   display: flex;
 }
 
-.PeriodSummary-week-labels {
-  width: 80px;
-}
-
 .PeriodSummary-week-labels,
 .PeriodSummary-week-stats {
-  flex-grow: 1;
-  font-size: 18px;
+  flex: 1;
 }
 
 .PeriodSummary-week-labels .PeriodSummary-stat-label,

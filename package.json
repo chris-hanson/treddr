@@ -1,6 +1,7 @@
 {
   "name": "treddr",
   "version": "1.1.9",
+  "homepage": "https://chris-hanson.github.io/treddr",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -28,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "predeploy": "npm version patch --force && npm run build",
+    "bump:patch": "npm version patch --force",
+    "bump:minor": "npm version minor --force",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

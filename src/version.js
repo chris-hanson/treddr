@@ -1,3 +1,2 @@
-const VERSION = "v1.1.6"
-
-export default VERSION
+import pkg from "../package.json"
+export default `v${pkg.version}`

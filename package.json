@@ -1,6 +1,6 @@
 {
   "name": "treddr",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -44,6 +44,8 @@
       "prettier"
     ],
     "rules": {
+      "import/no-named-as-default": 0,
+      "import/no-named-as-default-member": 0,
       "react/prop-types": 0,
       "jsx-a11y/label-has-associated-control": [
         "error",
